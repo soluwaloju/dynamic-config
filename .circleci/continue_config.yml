@@ -3,14 +3,15 @@ version: 2.1
 orbs:
   python: circleci/python@2.1.1
 
-execute-script:
-  docker:
-    # next-gen ubuntu image
-    - image: cimg/base:2021.04
-  steps:
-    - run:
-        name: execute script
-        command: './service.sh'
+jobs:
+  execute-script:
+    docker:
+      # next-gen ubuntu image
+      - image: cimg/base:2021.04
+    steps:
+      - run:
+          name: execute script
+          command: './service.sh'
 # the default pipeline parameters, which will be updated according to
 # the results of the path-filtering orb
 parameters:
