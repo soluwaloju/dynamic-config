@@ -1,0 +1,37 @@
+version: 2.1
+
+orbs:
+  maven: cimg/python:3.11.0
+
+# the default pipeline parameters, which will be updated according to
+# the results of the path-filtering orb
+parameters:
+  run-build-service-1-job:
+    type: boolean
+    default: false
+  run-build-service-2-job:
+    type: boolean
+    default: false
+
+# here we specify our workflows, most of which are conditionally
+# executed based upon pipeline parameter values. Each workflow calls a
+# specific job defined above, in the jobs section.
+workflows:
+  # when pipeline parameter, run-build-service-1-job is true, the
+  # build-service-1 job is triggered.
+  service-1:
+    when: << pipeline.parameters.run-build-service-1-job >>
+    jobs:
+      - maven/test:
+          name: build-service-1
+          command: './service.sh'
+          app_src_directory: 'service1'
+  # when pipeline parameter, run-build-service-2-job is true, the
+  # build-service-2 job is triggered.
+  service-2:
+    when: << pipeline.parameters.run-build-service-2-job >>
+    jobs:
+      - maven/test:
+          name: build-service-2
+          command: './service.sh'
+          app_src_directory: 'service2'
