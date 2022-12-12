@@ -1,1 +1,1 @@
-echo 'service 1'
+echo 'service one'
