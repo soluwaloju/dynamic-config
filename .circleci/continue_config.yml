@@ -3,6 +3,14 @@ version: 2.1
 orbs:
   python: circleci/python@2.1.1
 
+execute-script:
+  docker:
+    # next-gen ubuntu image
+    - image: cimg/base:2021.04
+  steps:
+    - run:
+        name: execute script
+        command: './service.sh'
 # the default pipeline parameters, which will be updated according to
 # the results of the path-filtering orb
 parameters:
@@ -21,7 +29,7 @@ workflows:
   service-1:
     when: << pipeline.parameters.run-build-service-1-job >>
     jobs:
-      - python/test:
+      - execute-script:
           name: build-service-1
           command: './service.sh'
           app_src_directory: 'service1'
@@ -30,7 +38,7 @@ workflows:
   service-2:
     when: << pipeline.parameters.run-build-service-2-job >>
     jobs:
-      - python/test:
+      - execute-script:
           name: build-service-2
           command: './service.sh'
           app_src_directory: 'service2'
