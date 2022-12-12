@@ -39,5 +39,3 @@ workflows:
     jobs:
       - execute-script:
           name: build-service-2
-          command: './service.sh'
-          app_src_directory: 'service2'
