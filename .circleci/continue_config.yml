@@ -12,7 +12,6 @@ parameters:
   run-build-service-2-job:
     type: boolean
     default: false
-
 # here we specify our workflows, most of which are conditionally
 # executed based upon pipeline parameter values. Each workflow calls a
 # specific job defined above, in the jobs section.
