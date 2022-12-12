@@ -32,8 +32,6 @@ workflows:
     jobs:
       - execute-script:
           name: build-service-1
-          command: './service.sh'
-          app_src_directory: 'service1'
   # when pipeline parameter, run-build-service-2-job is true, the
   # build-service-2 job is triggered.
   service-2:
