@@ -5,13 +5,18 @@ orbs:
 
 jobs:
   execute-script:
+    parameters:
+      app-directory:
+        type: string
     docker:
       # next-gen ubuntu image
       - image: cimg/base:2021.04
     steps:
       - run:
           name: execute script
-          command: './service.sh'
+          command: |
+            cd << app-directory >>
+            './service.sh'
 # the default pipeline parameters, which will be updated according to
 # the results of the path-filtering orb
 parameters:
@@ -32,6 +37,7 @@ workflows:
     jobs:
       - execute-script:
           name: build-service-1
+          app-directory: service2
   # when pipeline parameter, run-build-service-2-job is true, the
   # build-service-2 job is triggered.
   service-2:
@@ -39,3 +45,4 @@ workflows:
     jobs:
       - execute-script:
           name: build-service-2
+          app-directory: service2
