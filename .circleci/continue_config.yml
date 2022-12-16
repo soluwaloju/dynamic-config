@@ -12,6 +12,7 @@ jobs:
       # next-gen ubuntu image
       - image: cimg/base:2021.04
     steps:
+      - checkout
       - run:
           name: execute script
           command: |
