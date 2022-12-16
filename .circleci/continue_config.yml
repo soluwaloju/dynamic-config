@@ -17,7 +17,7 @@ jobs:
           name: execute script
           command: |
             cd << parameters.app-directory >>
-            chmond +x service.sh
+            chmod +x service.sh
             ./service.sh
 
 # the default pipeline parameters, which will be updated according to
