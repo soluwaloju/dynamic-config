@@ -15,7 +15,7 @@ jobs:
       - run:
           name: execute script
           command: |
-            cd << app-directory >>
+            cd << parameters.app-directory >>
             './service.sh'
 # the default pipeline parameters, which will be updated according to
 # the results of the path-filtering orb
@@ -37,7 +37,7 @@ workflows:
     jobs:
       - execute-script:
           name: build-service-1
-          app-directory: service2
+          app-directory: service1
   # when pipeline parameter, run-build-service-2-job is true, the
   # build-service-2 job is triggered.
   service-2:
