@@ -17,7 +17,9 @@ jobs:
           name: execute script
           command: |
             cd << parameters.app-directory >>
-            './service.sh'
+            chmond +x service.sh
+            ./service.sh
+
 # the default pipeline parameters, which will be updated according to
 # the results of the path-filtering orb
 parameters:
